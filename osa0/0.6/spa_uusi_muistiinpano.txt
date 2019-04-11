@@ -1,0 +1,9 @@
+title SPA - uusi muistiinpano
+
+note over selain:
+Estää lomakkeen oletus toiminnon, luo muistiinpanon, lisää sen muistiinpanojen listalle, piirtää listan uudelleen ja lähettää uuden muistiinpanon palvelimelle.
+
+end note
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa {content: "Content", data: "2019-04-11T13:55:18.631Z"}
+
+palvelin-->selain: 201 Created {"message":"note created"}
