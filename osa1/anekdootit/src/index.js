@@ -42,7 +42,6 @@ const App = (props) => {
         setVotes(votesCopy);
     }
     const mostVotedAnecdote = anecdotes[getIndexOfMostVotes()];
-    console.log('imostVotedAnecdote:', mostVotedAnecdote);
     return (
         
         <div>

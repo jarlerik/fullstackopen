@@ -1,0 +1,21 @@
+ul {
+    width: 100%;
+    padding: 0;
+}
+ul > li {
+    list-style: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    background: lightgrey;
+    font-size: 20px;
+}
+
+ul > .notification-error {
+    color: red;
+    border: 1px solid red;
+}
+ul > .notification-success {
+    border: 1px solid green;
+    color: green;
+}
