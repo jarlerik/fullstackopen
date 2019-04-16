@@ -3,7 +3,7 @@ import axios from 'axios';
 const PROTOCOL = 'http';
 const HOST = 'localhost';
 const PORT = 3001;
-const PERSONS_API = `${PROTOCOL}://${HOST}:${PORT}/persons`;
+const PERSONS_API = `${PROTOCOL}://${HOST}:${PORT}/api/persons`;
 
 const personService = {
 
