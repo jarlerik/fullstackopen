@@ -82,7 +82,6 @@ const App = () => {
     
     const filteredResult = filterValue.length > 0 && persons.filter( person => person.name.toLowerCase().includes(filterValue.toLowerCase()));
     const personsList = filteredResult || persons;
-
     return (
         <div>
             <Notifications notifications={notifications} />
@@ -97,7 +96,7 @@ const App = () => {
             />
             <h2>Numerot</h2>
             <Persons deletePerson={deletePerson} persons={personsList} />
-    </div>
+        </div>
     )
 
 }

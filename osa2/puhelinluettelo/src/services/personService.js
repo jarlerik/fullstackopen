@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const PROTOCOL = 'http';
-const HOST = 'localhost';
-const PORT = 3001;
-const PERSONS_API = `${PROTOCOL}://${HOST}:${PORT}/api/persons`;
+const API_URL = process.env.REACT_APP_API_URL;
+const PERSONS_API = `${API_URL}/api/persons`;
 
 const personService = {
 
