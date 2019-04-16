@@ -4,6 +4,7 @@ import PersonForm from './PersonForm';
 import Persons from './Persons';
 import personService from './services/personService';
 import Notifications from './Notifications';
+import EnvData from './EnvData';
 
 const App = () => {
     const [persons, setPersons] = useState([]);
@@ -96,6 +97,7 @@ const App = () => {
             />
             <h2>Numerot</h2>
             <Persons deletePerson={deletePerson} persons={personsList} />
+            <EnvData />
         </div>
     )
 
