@@ -97,7 +97,6 @@ const App = () => {
             />
             <h2>Numerot</h2>
             <Persons deletePerson={deletePerson} persons={personsList} />
-            <EnvData />
         </div>
     )
 
