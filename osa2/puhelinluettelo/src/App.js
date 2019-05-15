@@ -4,7 +4,6 @@ import PersonForm from './PersonForm';
 import Persons from './Persons';
 import personService from './services/personService';
 import Notifications from './Notifications';
-import EnvData from './EnvData';
 
 const App = () => {
     const [persons, setPersons] = useState([]);
@@ -36,27 +35,46 @@ const App = () => {
         const { data } = response;
         setPersons(data);
     }
-    const addNewPerson = (event) => {
+    const addNewPerson = async (event) => {
         event.preventDefault();
         const foundPerson = persons.find((person) => person.name === newName)
         if (foundPerson) {
             if (window.confirm(`${newName} on jo luettelossa. Korvataanko vanha numero uudella?`)) {
                 const updatedPerson = { ...foundPerson, number: newNumber }
-                const updatedPersonsList = persons.map(person => person.id === updatedPerson.id ? updatedPerson : person);
-                setPersons(updatedPersonsList);
-                personService.updatePerson(updatedPerson);
-                clearInputFields();
+                const response = await personService.updatePerson(updatedPerson)
+                if (response.data) {
+                    const updatedPersonsList = persons.map(person => person.id === updatedPerson.id ? updatedPerson : person);
+                    setPersons(updatedPersonsList);
+                    showNotification(`${updatedPerson.name} päivitetty.`, Notifications.SUCCESS);
+                    clearInputFields();
+                }
+                else {
+                    response.error && showNotification(`${response.error.message}`, Notifications.ERROR)
+                }
             }
         }
         else {
-            const personsCopy = [...persons];
-            const newPerson = { name: newName, number: newNumber };
+            const newPerson = {
+                name: newName,
+                number: newNumber
+            };
 
-            personsCopy.push(newPerson);
-            setPersons(personsCopy);
-            personService.createPerson(newPerson);
-            clearInputFields();
-            showNotification(`Lisättiin ${newPerson.name}.`, Notifications.SUCCESS);
+            const response = await personService.createPerson(newPerson);
+
+            if(response.data) {
+                const personsCopy = [...persons];
+                
+
+                personsCopy.push(newPerson);
+                setPersons(personsCopy);
+                clearInputFields();
+                showNotification(`Lisättiin ${newPerson.name}.`, Notifications.SUCCESS);
+            }
+            else {
+                response.error && showNotification(`${response.error.message}`, Notifications.ERROR)
+            }
+            
+
         }
     }
     const deletePerson = async (personId) => {
